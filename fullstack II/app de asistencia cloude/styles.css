@@ -1,0 +1,430 @@
+/* =====================================================================
+   VARIABLES — Paleta "Libro de Asistencia"
+===================================================================== */
+:root {
+  --ink: #1f2a44;
+  --ink-soft: #3a4666;
+  --paper: #f7f4ec;
+  --paper-raised: #ffffff;
+  --line: #d8d2c2;
+
+  --gold: #b8892b;
+  --gold-soft: #f1e3c6;
+
+  --sage: #4c6b53;
+  --sage-soft: #e3ecdf;
+
+  --rust: #a13d2c;
+  --rust-soft: #f3e0da;
+
+  --text-muted: #6b6455;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  --shadow-card: 0 1px 3px rgba(31, 42, 68, 0.08), 0 8px 20px rgba(31, 42, 68, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px);
+  background-size: 100% 2.2rem;
+  background-attachment: local;
+}
+
+/* =====================================================================
+   MASTHEAD
+===================================================================== */
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.2rem;
+  background: var(--ink);
+  color: var(--paper);
+  flex-wrap: wrap;
+}
+
+.masthead__mark {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.masthead__text { flex: 1; min-width: 200px; }
+
+.masthead__eyebrow {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold-soft);
+  margin-bottom: 0.15rem;
+}
+
+.masthead__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+/* =====================================================================
+   LAYOUT
+===================================================================== */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 960px) {
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1.6rem;
+  }
+  .panel { width: 320px; flex-shrink: 0; }
+  .content { flex: 1; min-width: 0; }
+}
+
+.panel, .content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* =====================================================================
+   CARDS
+===================================================================== */
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 1.3rem;
+  box-shadow: var(--shadow-card);
+}
+
+.card--sage { border-top: 3px solid var(--sage); }
+.card--rust { border-top: 3px solid var(--rust); }
+
+.card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.card__subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.count-badge {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+}
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  margin: 1rem 0;
+}
+
+/* =====================================================================
+   FORMS
+===================================================================== */
+.form { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.form--inline { flex-direction: row; align-items: stretch; }
+.form--inline .form__input { flex: 1; }
+
+.form__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form__input,
+.form__textarea {
+  font-family: var(--font-body);
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.form__input:focus,
+.form__textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+  background: var(--paper-raised);
+}
+
+.form__textarea { resize: vertical; }
+
+/* =====================================================================
+   BUTTONS
+===================================================================== */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1.1rem;
+  cursor: pointer;
+  transition: transform 0.05s ease, filter 0.15s ease;
+}
+
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: scale(0.97); }
+.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.btn--ink { background: var(--ink); color: var(--paper); }
+.btn--gold { background: var(--gold); color: var(--ink); }
+.btn--ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+
+.btn--block { width: 100%; }
+.btn--sm { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+
+/* =====================================================================
+   CHIP LIST (estudiantes)
+===================================================================== */
+.chip-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.chip {
+  font-size: 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+}
+
+/* =====================================================================
+   TABLES
+===================================================================== */
+.table-wrapper { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.table th {
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--line);
+  padding: 0.5rem 0.5rem;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.table__empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 1.2rem 0.5rem;
+}
+
+/* =====================================================================
+   SELLO — estado de asistencia (elemento distintivo)
+===================================================================== */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  transform: rotate(-2deg);
+}
+
+.stamp--presente { color: var(--sage); background: var(--sage-soft); }
+.stamp--ausente { color: var(--rust); background: var(--rust-soft); }
+.stamp--pendiente { color: var(--text-muted); background: var(--paper); border-style: dashed; }
+
+/* =====================================================================
+   TOGGLE ASISTENCIA (botones en tabla principal)
+===================================================================== */
+.attendance-toggle {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.toggle-btn {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.toggle-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+.toggle-btn--active-presente {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: #fff;
+}
+
+.toggle-btn--active-ausente {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: #fff;
+}
+
+/* =====================================================================
+   SUMMARY GRID
+===================================================================== */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+@media (min-width: 720px) {
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.justificacion-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* =====================================================================
+   MODAL
+===================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 42, 68, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  z-index: 50;
+}
+
+.modal {
+  background: var(--paper-raised);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-card);
+}
+
+.modal__stamp {
+  position: absolute;
+  top: -14px;
+  right: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--rust);
+  background: var(--rust-soft);
+  border: 1.5px solid var(--rust);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  transform: rotate(3deg);
+}
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+}
+
+.modal__student {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+/* =====================================================================
+   ACCESIBILIDAD
+===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

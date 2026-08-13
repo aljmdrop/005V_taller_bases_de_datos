@@ -1,0 +1,317 @@
+/* ===================================================
+   VARIABLES GLOBALES
+=================================================== */
+:root {
+  --color-primary: #4f46e5;
+  --color-primary-dark: #4338ca;
+  --color-primary-light: #eef2ff;
+  --color-success: #16a34a;
+  --color-success-light: #dcfce7;
+  --color-danger: #dc2626;
+  --color-danger-light: #fee2e2;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  --font-base: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.2rem;
+  --spacing-lg: 2rem;
+}
+
+/* ===================================================
+   RESET BÁSICO
+=================================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-base);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select { font-family: inherit; font-size: 1rem; }
+
+/* ===================================================
+   HEADER
+=================================================== */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.app-header__logo { font-size: 1.3rem; }
+
+.app-header__user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* ===================================================
+   LAYOUT DE VISTAS
+=================================================== */
+.view {
+  min-height: calc(100vh - 60px);
+  padding: var(--spacing-md);
+}
+
+.view--centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.view__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grid-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 700px) {
+  .grid-panel { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===================================================
+   TARJETAS (CARDS)
+=================================================== */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-border);
+}
+
+.card--auth {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.card__icon { font-size: 2.4rem; margin-bottom: var(--spacing-sm); }
+
+.card__title { font-size: 1.4rem; margin-bottom: var(--spacing-xs); }
+
+.card__subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.card__heading {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.card__hint {
+  margin-top: var(--spacing-md);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.card__hint code {
+  background: var(--color-primary-light);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* ===================================================
+   TARJETA PIN (Profesor)
+=================================================== */
+.card--pin { text-align: center; }
+
+.sesion-nombre {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.pin-display {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 0.4rem;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+}
+
+.pin-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ===================================================
+   FORMULARIOS
+=================================================== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  text-align: left;
+}
+
+.form__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.form__input {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  transition: border-color 0.15s ease;
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.form--pin { align-items: center; }
+
+.form__input--pin {
+  text-align: center;
+  font-size: 1.6rem;
+  letter-spacing: 0.5rem;
+  font-weight: 700;
+  max-width: 220px;
+}
+
+/* ===================================================
+   BOTONES
+=================================================== */
+.btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.15s ease;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover { background: var(--color-primary-dark); }
+
+.btn--danger {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+}
+.btn--danger:hover { background: #fecaca; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+.btn--ghost:hover { background: var(--color-bg); }
+
+.btn--block { width: 100%; }
+.btn--sm { padding: 0.5rem 0.9rem; font-size: 0.85rem; }
+
+/* ===================================================
+   TABLAS
+=================================================== */
+.table-wrapper { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 0.7rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.table th {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge--presente { background: var(--color-success-light); color: var(--color-success); }
+.badge--ausente { background: var(--color-danger-light); color: var(--color-danger); }
+
+/* ===================================================
+   MENSAJES DE ESTADO
+=================================================== */
+.mensaje {
+  margin-top: var(--spacing-sm);
+  padding: 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.mensaje--ok { background: var(--color-success-light); color: var(--color-success); }
+.mensaje--error { background: var(--color-danger-light); color: var(--color-danger); }
+
+/* ===================================================
+   RESPONSIVE: MOBILE FIRST YA APLICADO ARRIBA
+=================================================== */
+@media (min-width: 640px) {
+  .app-header { padding: var(--spacing-md) var(--spacing-lg); }
+  .view { padding: var(--spacing-lg); }
+}

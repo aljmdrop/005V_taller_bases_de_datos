@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libro de Asistencia | Universidad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===================== MASTHEAD ===================== -->
+  <header class="masthead">
+    <div class="masthead__mark" aria-hidden="true">§</div>
+    <div class="masthead__text">
+      <p class="masthead__eyebrow">Facultad · Registro académico</p>
+      <h1 class="masthead__title">Libro de Asistencia</h1>
+    </div>
+    <button id="btn-exportar" class="btn btn--gold">
+      <span>Exportar JSON</span>
+    </button>
+  </header>
+
+  <main class="layout">
+
+    <!-- ===================== PANEL LATERAL: SESIONES Y ROSTER ===================== -->
+    <aside class="panel">
+
+      <section class="card">
+        <h2 class="card__title">Sesión de clase</h2>
+
+        <form id="form-sesion" class="form">
+          <label class="form__label" for="input-sesion-nombre">Asignatura / tema</label>
+          <input id="input-sesion-nombre" class="form__input" type="text" placeholder="Ej: Cálculo II — Clase 14" required>
+
+          <label class="form__label" for="input-sesion-fecha">Fecha</label>
+          <input id="input-sesion-fecha" class="form__input" type="date" required>
+
+          <button type="submit" class="btn btn--ink btn--block">Abrir nueva sesión</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <label class="form__label" for="select-sesion">Consultar sesión existente</label>
+        <select id="select-sesion" class="form__input"></select>
+      </section>
+
+      <section class="card">
+        <h2 class="card__title">Estudiantes matriculados</h2>
+
+        <form id="form-estudiante" class="form form--inline">
+          <input id="input-estudiante-nombre" class="form__input" type="text" placeholder="Nombre del estudiante" required>
+          <button type="submit" class="btn btn--ink btn--sm">Añadir</button>
+        </form>
+
+        <ul id="lista-estudiantes" class="chip-list"></ul>
+      </section>
+
+    </aside>
+
+    <!-- ===================== CONTENIDO PRINCIPAL ===================== -->
+    <section class="content">
+
+      <section class="card">
+        <div class="card__header">
+          <h2 class="card__title">Pasar lista — <span id="sesion-actual-label">Ninguna sesión seleccionada</span></h2>
+          <p class="card__subtitle">Marca el estado de cada estudiante para esta sesión</p>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table" id="tabla-lista">
+            <thead>
+              <tr>
+                <th>Estudiante</th>
+                <th>Estado</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-lista-body">
+              <tr><td colspan="3" class="table__empty">Crea o selecciona una sesión para comenzar.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="summary-grid">
+
+        <section class="card card--sage">
+          <div class="card__header">
+            <h2 class="card__title">Asistentes</h2>
+            <span class="count-badge" id="count-asistentes">0</span>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead><tr><th>Estudiante</th><th>Hora</th></tr></thead>
+              <tbody id="tabla-asistentes-body">
+                <tr><td colspan="2" class="table__empty">Sin registros aún.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card card--rust">
+          <div class="card__header">
+            <h2 class="card__title">No asistentes</h2>
+            <span class="count-badge" id="count-ausentes">0</span>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead><tr><th>Estudiante</th><th>Justificación</th><th></th></tr></thead>
+              <tbody id="tabla-ausentes-body">
+                <tr><td colspan="3" class="table__empty">Sin registros aún.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ===================== MODAL: JUSTIFICAR INASISTENCIA ===================== -->
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal">
+      <div class="modal__stamp" aria-hidden="true">AUSENTE</div>
+      <h3 class="modal__title">Justificar inasistencia</h3>
+      <p class="modal__student" id="modal-student-name"></p>
+
+      <form id="form-justificar" class="form">
+        <label class="form__label" for="input-justificacion">Motivo</label>
+        <textarea id="input-justificacion" class="form__input form__textarea" rows="3" placeholder="Ej: Certificado médico adjunto, motivo familiar, etc." required></textarea>
+        <div class="modal__actions">
+          <button type="button" id="btn-cancelar-justificacion" class="btn btn--ghost">Cancelar</button>
+          <button type="submit" class="btn btn--ink">Guardar justificación</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

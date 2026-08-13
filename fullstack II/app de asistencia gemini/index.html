@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AsistApp | Registro de Asistencia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="app-header" id="app-header" hidden>
+    <div class="app-header__brand">
+      <span class="app-header__logo">📋</span>
+      <span class="app-header__title">AsistApp</span>
+    </div>
+    <div class="app-header__user">
+      <span id="user-name-label"></span>
+      <button id="btn-logout" class="btn btn--ghost btn--sm">Salir</button>
+    </div>
+  </header>
+
+  <main id="app-main">
+
+    <!-- ================= VISTA: LOGIN ================= -->
+    <section id="view-login" class="view view--centered">
+      <div class="card card--auth">
+        <div class="card__icon">🎓</div>
+        <h1 class="card__title">Bienvenido a AsistApp</h1>
+        <p class="card__subtitle">Selecciona un usuario de prueba para iniciar sesión</p>
+
+        <form id="form-login" class="form">
+          <label class="form__label" for="select-usuario">Usuario</label>
+          <select id="select-usuario" class="form__input" required></select>
+
+          <button type="submit" class="btn btn--primary btn--block">Ingresar</button>
+        </form>
+
+        <p class="card__hint">Prototipo sin backend — los datos viven en <code>localStorage</code>.</p>
+      </div>
+    </section>
+
+    <!-- ================= VISTA: PROFESOR ================= -->
+    <section id="view-profesor" class="view" hidden>
+      <div class="view__inner">
+
+        <div class="grid-panel">
+
+          <!-- Crear sesión -->
+          <div class="card">
+            <h2 class="card__heading">Nueva sesión de clase</h2>
+            <form id="form-nueva-clase" class="form">
+              <label class="form__label" for="input-nombre-clase">Nombre de la clase</label>
+              <input id="input-nombre-clase" class="form__input" type="text" placeholder="Ej: Matemática III" required>
+              <button type="submit" class="btn btn--primary btn--block">Generar sesión y PIN</button>
+            </form>
+          </div>
+
+          <!-- Sesión activa -->
+          <div class="card card--pin" id="card-sesion-activa" hidden>
+            <h2 class="card__heading">Sesión activa</h2>
+            <p class="sesion-nombre" id="sesion-activa-nombre"></p>
+            <div class="pin-display" id="pin-display">------</div>
+            <p class="pin-hint">Comparte este PIN con tus alumnos</p>
+            <button id="btn-cerrar-sesion-clase" class="btn btn--danger btn--block btn--sm">Cerrar sesión de clase</button>
+          </div>
+
+        </div>
+
+        <div class="card">
+          <h2 class="card__heading">Alumnos y asistencia</h2>
+          <div class="table-wrapper">
+            <table class="table" id="tabla-alumnos">
+              <thead>
+                <tr>
+                  <th>Alumno</th>
+                  <th>Estado en sesión activa</th>
+                  <th>Hora de registro</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-alumnos-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VISTA: ALUMNO ================= -->
+    <section id="view-alumno" class="view" hidden>
+      <div class="view__inner">
+
+        <div class="card card--auth">
+          <h2 class="card__heading">Registrar asistencia</h2>
+          <p class="card__subtitle">Ingresa el PIN que te compartió tu profesor</p>
+          <form id="form-registrar-pin" class="form form--pin">
+            <input id="input-pin" class="form__input form__input--pin" type="text" inputmode="numeric" maxlength="6" placeholder="000000" required>
+            <button type="submit" class="btn btn--primary btn--block">Marcar asistencia</button>
+          </form>
+          <p id="mensaje-registro" class="mensaje" hidden></p>
+        </div>
+
+        <div class="card">
+          <h2 class="card__heading">Mi historial de asistencia</h2>
+          <div class="table-wrapper">
+            <table class="table" id="tabla-historial">
+              <thead>
+                <tr>
+                  <th>Clase</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-historial-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
